@@ -1,0 +1,11 @@
+UPDATES ----------------------------------------------------------------------
+
+Inserção do último ACT antes do primeiro ACT
+	Tempo para inserção de 1: 0.17929315567017
+
+
+Inserção de 10 ACTs antes do primeiro ACT
+	Tempo para inserção de 10: 1.1099350452423
+	
+Remoção dos 10 ultimos ACTs inseridos 
+	Tempo para remoção dos 10 ultimos: 0.91492700576782

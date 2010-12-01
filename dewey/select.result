@@ -1,0 +1,29 @@
+DBLP -----------------------------------------------------------------------
+
+/dblp
+	Time: 0.0012798309326172.
+	Fetched 1 Rows
+
+/dblp/incollection
+	Time: 0.80978894233704.
+	Fetched 15119 Rows
+
+/dblp/article/i
+	Time: 9.1495859622955.
+	Fetched 13825 Rows
+	
+/dblp//author
+	Time: 197.6950609684.
+	Fetched 9927482 Rows
+
+/dblp/inproceedings[@mdate=2006-11-09]
+	Time: 37.993449211121.
+	Fetched 632 Rows
+
+/dblp/inproceedings/author[text()='Jong-Deok Choi']
+	Time: 62.770989179611.
+	Fetched 34 Rows
+
+/dblp/inproceedings[author[position()=3 and text()='Carlos A. Heuser]/author[1]
+	Time: 66.225049972534.
+	Fetched 10 Rows

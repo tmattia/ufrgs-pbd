@@ -1,0 +1,31 @@
+DBLP -----------------------------------------------------------------------
+
+/dblp
+	Time: 1.1977438926697.
+	Fetched 1 Rows
+
+/dblp/incollection
+	Time: 0.062133073806763.
+	Fetched 15119 Rows
+
+/dblp/article/i
+	Time: 0.06715202331543.
+	Fetched 6468 Rows
+
+/dblp//author
+	Time: 4.1409130096436.
+	Fetched 4628641 Rows
+
+/dblp/inproceedings[@mdate=2006-11-09]
+	Time: -
+	Fetched - Rows 
+	**** Pendente (falta importar atributos - tabela separada / flag / path com @?)
+
+/dblp/inproceedings/author[text()='Jong-Deok Choi']
+	Time: 28.874257802963.
+	Fetched 34 Rows
+    
+/dblp/inproceedings[author[position()=3 and text()='Carlos A. Heuser]/author[1]
+	Time: -
+	Fetched - Rows
+	**** Pendente (como achar position()=3?)

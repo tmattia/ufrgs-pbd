@@ -1,0 +1,46 @@
+SHAKESPEARE ------------------------------------------------------------
+
+Parsing document a_and_c.xml (1)...  OK! [0.45318198204041]
+Parsing document all_well.xml (2)...  OK! [0.97489094734192]
+Parsing document as_you.xml (3)...  OK! [1.3160669803619]
+Parsing document com_err.xml (4)...  OK! [1.5167560577393]
+Parsing document coriolan.xml (5)...  OK! [1.9985780715942]
+Parsing document cymbelin.xml (6)...  OK! [2.3683059215546]
+Parsing document dream.xml (7)...  OK! [2.6639449596405]
+Parsing document hamlet.xml (8)...  OK! [3.0513920783997]
+Parsing document hen_iv_1.xml (9)...  OK! [3.4144060611725]
+Parsing document hen_iv_2.xml (10)...  OK! [3.7379150390625]
+Parsing document hen_v.xml (11)...  OK! [4.1193299293518]
+Parsing document hen_vi_1.xml (12)...  OK! [4.3773739337921]
+Parsing document hen_vi_2.xml (13)...  OK! [4.6825950145721]
+Parsing document hen_vi_3.xml (14)...  OK! [5.1444640159607]
+Parsing document hen_viii.xml (15)...  OK! [5.4429769515991]
+Parsing document j_caesar.xml (16)...  OK! [5.8103110790253]
+Parsing document john.xml (17)...  OK! [6.0458738803864]
+Parsing document lear.xml (18)...  OK! [6.5185070037842]
+Parsing document lll.xml (19)...  OK! [6.9411208629608]
+Parsing document m_for_m.xml (20)...  OK! [7.2287900447845]
+Parsing document m_wives.xml (21)...  OK! [7.7285919189453]
+Parsing document macbeth.xml (22)...  OK! [8.0009498596191]
+Parsing document merchant.xml (23)...  OK! [8.3180029392242]
+Parsing document much_ado.xml (24)...  OK! [8.7273440361023]
+Parsing document othello.xml (25)...  OK! [9.1996259689331]
+Parsing document pericles.xml (26)...  OK! [9.7318520545959]
+Parsing document r_and_j.xml (27)...  OK! [10.618324041367]
+Parsing document rich_ii.xml (28)...  OK! [11.538519859314]
+Parsing document rich_iii.xml (29)...  OK! [12.593551874161]
+Parsing document t_night.xml (30)...  OK! [13.06877207756]
+Parsing document taming.xml (31)...  OK! [13.529265880585]
+Parsing document tempest.xml (32)...  OK! [13.797407865524]
+Parsing document teste.xml (33)...  OK! [13.801162958145]
+Parsing document timon.xml (34)...  OK! [14.242701053619]
+Parsing document titus.xml (35)...  OK! [14.671630859375]
+Parsing document troilus.xml (36)...  OK! [15.392808914185]
+Parsing document two_gent.xml (37)...  OK! [15.741230964661]
+Parsing document win_tale.xml (38)...  OK! [16.170901060104]
+
+Tempo Total: 16.171028852463
+
+DBLP ------------------------------------------------------------
+
+~15min

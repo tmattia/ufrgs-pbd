@@ -36,22 +36,85 @@ WHERE n.i <= length(r.value) + 2;
 ** aqui vai apenas os qgrams da palavra a ser procurada
 */
 
-CREATE TABLE qgramsaux (
-	p int not null,
-	gram varchar(3) not null);
-	
-INSERT INTO qgramsaux VALUES (1,'##H'),(2,'#HO'),(3,'HOR'),(4,'ORA'),(5,'RAT'),(6,'ATI'),(7,'TIO'),(8,'IO%'),(9,'O%%');
+CREATE TABLE qgramsaux (p int not null,gram varchar(3) not null);
+
+/* stored procedure
+** serve para popular os valores da tabela auxiliar com uma determinada string
+** exemplo: CALL ppl_qgramsaux('HORATIO');
+*/ 
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS ppl_qgramsaux//
+CREATE PROCEDURE ppl_qgramsaux(IN sigma VARCHAR(255)) BEGIN
+DELETE FROM qgramsaux;
+INSERT INTO qgramsaux
+SELECT n.i, SUBSTR(CONCAT('##',UPPER(sigma),'%%'), n.i, 3)
+FROM n
+WHERE n.i <= length(sigma) + 2;
+END//
+DELIMITER ;
+
+/* stored procedure
+** faz a consulta por similaridade dada uma determinada palavra
+** se o segundo parâmetro for nulo, retorna a tabela
+** se não for, retorna o número de ocorrencias IGUAIS ao segundo parâmetro
+** exemplo: CALL sel_qgrams('ORATIO',null);
+** exemplo: CALL sel_qgrams('ORATIO','HORATIO');
+*/ 
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS sel_qgrams//
+CREATE PROCEDURE sel_qgrams(IN sigma VARCHAR(255),IN t VARCHAR(255)) BEGIN
+IF (t is null) THEN
+SELECT r.c, r.value
+FROM edge as r, qgramsaux as tq, qgrams as raq
+WHERE r.c = raq.c AND raq.gram = tq.gram AND
+	  raq.p <= tq.p + 10 AND raq.p >= tq.p - 10 AND
+	  LENGTH(r.value) <= LENGTH(sigma) + 10 AND LENGTH(r.value) >= LENGTH(sigma) - 10
+GROUP BY r.c, r.value
+HAVING COUNT(*) >= LENGTH(r.value) - 28 AND COUNT(*) >= LENGTH(sigma) - 28
+ORDER BY COUNT(*) asc;
+ELSE
+SELECT count(*)CALL sel_qgrams('ORACIO',@sigma);
+FROM (SELECT r.value
+FROM edge as r, qgramsaux as tq, qgrams as raq
+WHERE r.c = raq.c AND raq.gram = tq.gram AND
+	  raq.p <= tq.p + 10 AND raq.p >= tq.p - 10 AND
+	  LENGTH(r.value) <= LENGTH(sigma) + 10 AND LENGTH(r.value) >= LENGTH(sigma) - 10
+GROUP BY r.c, r.value
+HAVING COUNT(*) >= LENGTH(r.value) - 28 AND COUNT(*) >= LENGTH(sigma) - 28
+ORDER BY COUNT(*) asc) as t
+WHERE value=t;
+END IF;
+END//
+DELIMITER ;
 
 /* query para consulta por similaridade
 ** sigma = HORATIO
 ** aproximate string selection
 */
 
-SELECT r.c, r.value
-FROM edge as r, qgramsaux as tq, qgrams as raq
-WHERE r.c = raq.c AND raq.gram = tq.gram AND
-	  raq.p <= tq.p + 10 AND raq.p >= tq.p - 10 AND
-	  LENGTH(r.value) <= LENGTH('HORATIO') + 10 AND LENGTH(r.value) >= LENGTH('HORATIO') - 10
-GROUP BY r.c, r.value
-HAVING COUNT(*) >= LENGTH(r.value) - 28 AND COUNT(*) >= LENGTH('HORATIO') - 28
-ORDER BY COUNT(*) asc;
+SET @sigma = 'HORATIO';
+CALL ppl_qgramsaux(@sigma);
+CALL sel_qgrams('ORACIO',@sigma);
+CALL sel_qgrams('HORACIO',@sigma);
+CALL sel_qgrams('OREITIO',@sigma);
+
+/* query para consulta por similaridade
+** sigma = MARCELLUS
+*/
+
+SET @sigma = 'MARCELLUS';
+CALL ppl_qgramsaux(@sigma);
+CALL sel_qgrams('MARCEL',@sigma);
+CALL sel_qgrams('MARCELO',@sigma);
+
+/* query para consulta por similaridade
+** sigma = QUEEN GERTRUDE
+*/
+
+SET @sigma = 'QUEEN GERTRUDE';
+CALL ppl_qgramsaux(@sigma);
+CALL sel_qgrams('GERTRUDES',@sigma);
+CALL sel_qgrams('GERTRUD',@sigma);
+CALL sel_qgrams('RAINHA GERTRUDES',@sigma);

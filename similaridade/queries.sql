@@ -66,7 +66,7 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS sel_qgrams//
 CREATE PROCEDURE sel_qgrams(IN sigma VARCHAR(255),IN t VARCHAR(255)) BEGIN
 IF (t is null) THEN
-SELECT r.c, r.value INTO OUTFILE 'lala.txt'
+SELECT r.c, r.value
 FROM edge as r, qgramsaux as tq, qgrams as raq
 WHERE r.c = raq.c AND raq.gram = tq.gram AND
 	  raq.p <= tq.p + 10 AND raq.p >= tq.p - 10 AND
@@ -75,8 +75,8 @@ GROUP BY r.c, r.value
 HAVING COUNT(*) >= LENGTH(r.value) - 28 AND COUNT(*) >= LENGTH(sigma) - 28
 ORDER BY COUNT(*) asc;
 ELSE
-SELECT count(*)
-FROM (SELECT r.value
+SELECT *
+FROM (SELECT r.c, r.value
 FROM edge as r, qgramsaux as tq, qgrams as raq
 WHERE r.c = raq.c AND raq.gram = tq.gram AND
 	  raq.p <= tq.p + 10 AND raq.p >= tq.p - 10 AND
@@ -124,8 +124,10 @@ CALL sel_qgrams('ATO',@sigma);
 */
 
 SET @sigma = 'QUEEN GERTRUDE';
-CALL ppl_qgramsaux(@sigma);
+CALL ppl_qgramsaux('GERTRUDES');
 CALL sel_qgrams('GERTRUDES',@sigma);
+CALL ppl_qgramsaux('GERTRUD');
 CALL sel_qgrams('GERTRUD',@sigma);
+CALL ppl_qgramsaux('RAINHA GERTRUDES');
 CALL sel_qgrams('RAINHA GERTRUDES',@sigma);
 

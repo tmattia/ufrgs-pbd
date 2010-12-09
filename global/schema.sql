@@ -27,7 +27,5 @@ CREATE TABLE edge_global (
     KEY path_id (path_id),
     KEY parent_id (parent_id),
     KEY id (id),
-    FOREIGN KEY (doc_id, path_id) REFERENCES path_global (doc_id, path_id) ON DELETE CASCADE ON UPDATE CASCADE/*,
-    FOREIGN KEY (parent_id) REFERENCES edge_global(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (end_desc_id) REFERENCES edge_global(id) ON DELETE CASCADE ON UPDATE CASCADE*/
+    FOREIGN KEY (doc_id, path_id) REFERENCES path_global (doc_id, path_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
